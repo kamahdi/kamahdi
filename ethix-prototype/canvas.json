@@ -1,0 +1,30 @@
+{
+  "v": 3,
+  "createdOnFiles": {"v": 1, "at": "2026-10-19T15:10:00Z"},
+  "title": "Ethix Mobile Redesign",
+  "launch": {"view": "canvas"},
+  "pages": [],
+  "boards": {
+    "Main.dc.html": {"x": 0, "y": 0, "w": 390, "h": 844, "title": "Home", "is_interactive": true, "radius": 36},
+    "Invest.dc.html": {"x": 470, "y": 0, "w": 390, "h": 844, "title": "Invest", "is_interactive": true, "radius": 36},
+    "Sending.dc.html": {"x": 940, "y": 0, "w": 390, "h": 844, "title": "Sending securely", "is_interactive": true, "radius": 36},
+    "Success.dc.html": {"x": 1410, "y": 0, "w": 390, "h": 844, "title": "Investment successful", "is_interactive": true, "radius": 36},
+    "Portfolio.dc.html": {"x": 1880, "y": 0, "w": 390, "h": 844, "title": "Portfolio", "is_interactive": true, "radius": 36},
+    "Settings.dc.html": {"x": 2350, "y": 0, "w": 390, "h": 844, "title": "Settings", "is_interactive": true, "radius": 36},
+    "SignUp.dc.html": {"x": 0, "y": 1264, "w": 390, "h": 844, "title": "Sign-up", "is_interactive": true, "radius": 36},
+    "Cards.dc.html": {"x": 470, "y": 1264, "w": 390, "h": 844, "title": "Card management", "is_interactive": true, "radius": 36},
+    "EthixHome.dc.html": {"x": 940, "y": 1264, "w": 390, "h": 844, "title": "ETHIX Home", "is_interactive": true, "radius": 36},
+    "Give.dc.html": {"x": 1410, "y": 1264, "w": 390, "h": 844, "title": "ETHIX Give", "is_interactive": true, "radius": 36},
+    "Transfer.dc.html": {"x": 1880, "y": 1264, "w": 390, "h": 844, "title": "Transfer", "is_interactive": true, "radius": 36},
+    "Activity.dc.html": {"x": 2350, "y": 1264, "w": 390, "h": 844, "title": "Activity", "is_interactive": true, "radius": 36},
+    "Notifications.dc.html": {"x": 2820, "y": 1264, "w": 390, "h": 844, "title": "Notifications", "is_interactive": true, "radius": 36}
+  },
+  "order": ["Main.dc.html", "Invest.dc.html", "Sending.dc.html", "Success.dc.html", "Portfolio.dc.html", "Settings.dc.html", "SignUp.dc.html", "Cards.dc.html", "EthixHome.dc.html", "Give.dc.html", "Transfer.dc.html", "Activity.dc.html", "Notifications.dc.html"],
+  "notes": {
+    "flowTitle": {"x": 0, "y": -300, "text": "ETHIX app · core flow", "kind": "title1", "maxW": 2740},
+    "moreTitle": {"x": 0, "y": 964, "text": "Onboarding, money movement & products", "kind": "title1", "maxW": 3210}
+  },
+  "designSystems": [
+    {"title": "ETHIX Design System", "namespace": "ethixdesignsystem_3fcc11", "artifact": "https://claude.ai/artifact/819M4CtEstyBc9D5cE1giE", "version": "1792398334-99a1", "copiedAt": "2026-10-19T15:10:00Z"}
+  ]
+}

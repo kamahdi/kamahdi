@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>ETHIX · Settings</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ds/ethixdesignsystem_3fcc11/styles.css">
+<script src="ds/ethixdesignsystem_3fcc11/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+<style>
+body{margin:0;background:#0A0A0A}
+a{color:#22A075;text-decoration:none}a:hover{color:#5FBB99}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; position: relative; display: flex; flex-direction: column; background: var(--surface-inverse); color: var(--text-on-dark); font-family: var(--font-text); overflow: hidden">
+
+  <header style="flex: 0 0 auto; padding: 56px 24px 16px">
+    <h1 style="margin: 0; font-family: var(--font-display); font-size: 26px; font-weight: 700; letter-spacing: -0.02em; color: var(--text-on-dark)">Settings</h1>
+  </header>
+
+  <main style="flex: 1 1 auto; overflow: auto; padding: 0 24px 24px; display: flex; flex-direction: column; gap: 16px">
+
+    <section aria-label="Profile" style="display: flex; align-items: center; gap: 14px; padding: 16px; border-radius: 14px; background: var(--surface-inverse-raised); border: 1px solid var(--border-on-dark)">
+      <div aria-hidden="true" style="width: 48px; height: 48px; border-radius: 50%; background: var(--g-800); color: var(--g-100); display: grid; place-items: center; font-family: var(--font-display); font-weight: 700; font-size: 17px">AH</div>
+      <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px">
+        <span style="font-size: 15px; font-weight: 600; color: var(--text-on-dark)">Amira Haddad</span>
+        <span style="font-size: 13px; color: var(--text-on-dark-muted)">Verified · Member since March 2024</span>
+      </div>
+    </section>
+
+    <section aria-label="Preferences" style="display: flex; flex-direction: column; gap: 10px">
+      <h2 style="margin: 0; font-family: var(--font-text); font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-on-dark-muted)">Preferences</h2>
+      <div style="padding: 16px; border-radius: 14px; background: var(--surface-inverse-raised); border: 1px solid var(--border-on-dark); display: flex; flex-direction: column; gap: 18px">
+        <x-import component-from-global-scope="ETHIXDesignSystem_3fcc11.Switch" tone="dark" label="Round up spare change" description="Invested weekly into ETHIX Invest" checked="{{roundups}}" on-change="{{toggleRoundups}}"></x-import>
+        <x-import component-from-global-scope="ETHIXDesignSystem_3fcc11.Switch" tone="dark" label="Screening alerts" description="Tell me when a holding is flagged" checked="{{alerts}}" on-change="{{toggleAlerts}}"></x-import>
+        <x-import component-from-global-scope="ETHIXDesignSystem_3fcc11.Switch" tone="dark" label="Face ID to open" description="Required for transfers over £500" checked="{{faceId}}" on-change="{{toggleFaceId}}"></x-import>
+      </div>
+    </section>
+
+    <section aria-label="Screening strictness" style="display: flex; flex-direction: column; gap: 10px">
+      <h2 style="margin: 0; font-family: var(--font-text); font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-on-dark-muted)">Screening strictness</h2>
+      <div style="padding: 16px; border-radius: 14px; background: var(--surface-inverse-raised); border: 1px solid var(--border-on-dark)">
+        <x-import component-from-global-scope="ETHIXDesignSystem_3fcc11.Radio" tone="dark" name="strict" value="{{strictness}}" on-change="{{pickStrictness}}" options="{{strictOptions}}"></x-import>
+      </div>
+    </section>
+
+    <x-import component-from-global-scope="ETHIXDesignSystem_3fcc11.Button" variant="onDark" size="lg" block="{{yes}}" on-click="{{openDialog}}">Change screening profile</x-import>
+
+    <section aria-label="Account" style="display: flex; flex-direction: column; gap: 10px">
+      <h2 style="margin: 0; font-family: var(--font-text); font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-on-dark-muted)">Account</h2>
+      <div style="border-radius: 14px; background: var(--surface-inverse-raised); border: 1px solid var(--border-on-dark); display: flex; flex-direction: column">
+        <a href="Cards.dc.html" style="min-height: 52px; padding: 0 16px; display: flex; align-items: center; justify-content: space-between; font-size: 14px; color: var(--text-on-dark)">Cards and ETHIX Wallet<span aria-hidden="true" style="color: var(--text-on-dark-muted)">→</span></a>
+        <a href="Notifications.dc.html" style="min-height: 52px; padding: 0 16px; display: flex; align-items: center; justify-content: space-between; font-size: 14px; color: var(--text-on-dark); border-top: 1px solid var(--border-on-dark)">Notifications<span aria-hidden="true" style="color: var(--text-on-dark-muted)">→</span></a>
+        <a href="Activity.dc.html" style="min-height: 52px; padding: 0 16px; display: flex; align-items: center; justify-content: space-between; font-size: 14px; color: var(--text-on-dark); border-top: 1px solid var(--border-on-dark)">Statements and activity<span aria-hidden="true" style="color: var(--text-on-dark-muted)">→</span></a>
+        <a href="SignUp.dc.html" style="min-height: 52px; padding: 0 16px; display: flex; align-items: center; font-size: 14px; font-weight: 500; color: #E07A6B; border-top: 1px solid var(--border-on-dark)">Log out</a>
+      </div>
+    </section>
+
+    <p style="margin: 0; font-size: 13px; line-height: 1.55; color: var(--text-on-dark-muted)">ETHIX is not a bank. Your money is held by our FCA-authorised partner bank and protected by the FSCS up to £85,000.</p>
+  </main>
+
+  <nav aria-label="Main" style="flex: 0 0 auto; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--border-on-dark); background: rgba(10,10,10,.92); padding: 8px 8px 28px">
+    <a href="Main.dc.html" style="min-height: 52px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 11px; color: var(--text-on-dark-muted)">
+      <x-import component-from-global-scope="ETHIXDesignSystem_3fcc11.Icon" name="save" size="{{tabIcon}}" base="{{iconBase}}" tone="light" style="{{dim}}"></x-import>Home
+    </a>
+    <a href="Invest.dc.html" style="min-height: 52px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 11px; color: var(--text-on-dark-muted)">
+      <x-import component-from-global-scope="ETHIXDesignSystem_3fcc11.Icon" name="invest" size="{{tabIcon}}" base="{{iconBase}}" tone="light" style="{{dim}}"></x-import>Invest
+    </a>
+    <a href="Portfolio.dc.html" style="min-height: 52px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 11px; color: var(--text-on-dark-muted)">
+      <x-import component-from-global-scope="ETHIXDesignSystem_3fcc11.Icon" name="analyze" size="{{tabIcon}}" base="{{iconBase}}" tone="light" style="{{dim}}"></x-import>Portfolio
+    </a>
+    <a href="Settings.dc.html" aria-current="page" style="min-height: 52px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 11px; font-weight: 600; color: var(--g-400)">
+      <x-import component-from-global-scope="ETHIXDesignSystem_3fcc11.Icon" name="protect" size="{{tabIcon}}" base="{{iconBase}}"></x-import>Settings
+    </a>
+  </nav>
+
+  <sc-if value="{{open}}" hint-placeholder-val="{{ false }}">
+    <x-import component-from-global-scope="ETHIXDesignSystem_3fcc11.Dialog" open="{{yes}}" width="{{dialogW}}" title="Change profile?" description="Holdings that no longer pass will be sold at the next rebalance." on-close="{{closeDialog}}">
+      <div style="display: flex; justify-content: flex-end; gap: 8px; margin-top: 8px">
+        <x-import component-from-global-scope="ETHIXDesignSystem_3fcc11.Button" variant="secondary" on-click="{{closeDialog}}">Cancel</x-import>
+        <x-import component-from-global-scope="ETHIXDesignSystem_3fcc11.Button" on-click="{{closeDialog}}">Change profile</x-import>
+      </div>
+    </x-import>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { roundups: true, alerts: false, faceId: true, strictness: 'full', open: false };
+  }
+  renderVals() {
+    const s = this.state;
+    return {
+      yes: true,
+      tabIcon: 22,
+      dialogW: 320,
+      iconBase: 'ds/ethixdesignsystem_3fcc11/assets/icons',
+      dim: { opacity: 0.55 },
+      roundups: s.roundups,
+      alerts: s.alerts,
+      faceId: s.faceId,
+      toggleRoundups: () => this.setState({ roundups: !s.roundups }),
+      toggleAlerts: () => this.setState({ alerts: !s.alerts }),
+      toggleFaceId: () => this.setState({ faceId: !s.faceId }),
+      strictness: s.strictness,
+      pickStrictness: (e) => this.setState({ strictness: e.target.value }),
+      strictOptions: [
+        { value: 'full', label: 'Full exclusions', description: 'All 14 categories' },
+        { value: 'core', label: 'Core exclusions', description: 'Weapons, tobacco, fossil fuels' }
+      ],
+      open: s.open,
+      openDialog: () => this.setState({ open: true }),
+      closeDialog: () => this.setState({ open: false })
+    };
+  }
+}
+</script>
+</body>
+</html>

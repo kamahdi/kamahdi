@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>ETHIX · Notifications</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ds/ethixdesignsystem_3fcc11/styles.css">
+<script src="ds/ethixdesignsystem_3fcc11/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+<style>
+body{margin:0;background:#0A0A0A}
+a{color:#22A075;text-decoration:none}a:hover{color:#5FBB99}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; display: flex; flex-direction: column; background: var(--surface-inverse); color: var(--text-on-dark); font-family: var(--font-text); overflow: hidden">
+
+  <header style="flex: 0 0 auto; display: flex; align-items: center; gap: 12px; padding: 56px 24px 16px">
+    <a href="Main.dc.html" aria-label="Back to home" style="width: 44px; height: 44px; border-radius: 8px; border: 1px solid var(--border-on-dark); background: rgba(255,255,255,.04); color: var(--text-on-dark); display: grid; place-items: center">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg>
+    </a>
+    <h1 style="flex: 1; margin: 0; font-family: var(--font-display); font-size: 21px; font-weight: 700; letter-spacing: -0.01em; color: var(--text-on-dark)">Notifications</h1>
+    <button onClick="{{markAll}}" style="min-height: 44px; padding: 0 4px; border: none; background: transparent; color: var(--g-400); font-family: var(--font-text); font-size: 13px; font-weight: 500; cursor: pointer">Mark all read</button>
+  </header>
+
+  <main style="flex: 1 1 auto; overflow: auto; padding: 0 24px 24px; display: flex; flex-direction: column; gap: 8px">
+    <sc-for list="{{items}}" as="n" hint-placeholder-count="5">
+      <a href="{{n.href}}" style="display: flex; gap: 14px; align-items: flex-start; padding: 16px; border-radius: 14px; background: {{n.bg}}; border: 1px solid var(--border-on-dark); color: var(--text-on-dark)">
+        <x-import component-from-global-scope="ETHIXDesignSystem_3fcc11.Icon" name="{{n.icon}}" size="{{iconSize}}" base="{{iconBase}}"></x-import>
+        <span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px">
+          <span style="display: flex; justify-content: space-between; gap: 8px">
+            <span style="font-size: 14px; font-weight: 600">{{n.title}}</span>
+            <span style="font-size: 12px; color: var(--text-on-dark-muted); white-space: nowrap">{{n.when}}</span>
+          </span>
+          <span style="font-size: 13px; line-height: 1.5; color: var(--text-on-dark-muted)">{{n.body}}</span>
+        </span>
+        <sc-if value="{{n.unread}}" hint-placeholder-val="{{ false }}">
+          <span aria-label="Unread" style="flex: 0 0 auto; width: 8px; height: 8px; margin-top: 6px; border-radius: 50%; background: var(--g-400)"></span>
+        </sc-if>
+      </a>
+    </sc-for>
+    <p style="margin: 12px 0 0; font-size: 12px; line-height: 1.5; color: var(--text-on-dark-muted); text-align: center">Choose what we tell you about in <a href="Settings.dc.html">Settings</a>.</p>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { read: false };
+  }
+  renderVals() {
+    const read = this.state.read;
+    const list = [
+      { icon: 'protect', title: 'Holding under review', when: '2h', unread: true, href: 'Portfolio.dc.html', body: 'Global Screened Equity is being re-screened after a supplier report. If it no longer passes, it will be sold at the next rebalance on 14 November.' },
+      { icon: 'invest', title: 'Investment placed', when: 'Today', unread: true, href: 'Portfolio.dc.html', body: 'Your £250.00 is now in the Ethical Growth ISA.' },
+      { icon: 'grow', title: 'Coupon paid', when: '8 Oct', unread: false, href: 'Activity.dc.html', body: 'Riverside Housing Bond paid £14.20 into ETHIX Wallet.' },
+      { icon: 'grow', title: 'Gift Aid claimed', when: '8 Oct', unread: false, href: 'Give.dc.html', body: 'We added £6.25 to your gift to Climate and nature.' },
+      { icon: 'analyze', title: 'Screening policy updated', when: '12 Aug', unread: false, href: 'Settings.dc.html', body: 'Version 4.2 adds private prisons to the full exclusions list.' }
+    ];
+    return {
+      iconSize: 24,
+      iconBase: 'ds/ethixdesignsystem_3fcc11/assets/icons',
+      markAll: () => this.setState({ read: true }),
+      items: list.map((n) => {
+        const unread = n.unread && !read;
+        return Object.assign({}, n, { unread: unread, bg: unread ? '#141716' : 'transparent' });
+      })
+    };
+  }
+}
+</script>
+</body>
+</html>

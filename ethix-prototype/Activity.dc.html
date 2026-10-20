@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>ETHIX · Activity</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ds/ethixdesignsystem_3fcc11/styles.css">
+<script src="ds/ethixdesignsystem_3fcc11/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+<style>
+body{margin:0;background:#0A0A0A}
+a{color:#22A075;text-decoration:none}a:hover{color:#5FBB99}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; display: flex; flex-direction: column; background: var(--surface-inverse); color: var(--text-on-dark); font-family: var(--font-text); overflow: hidden">
+
+  <header style="flex: 0 0 auto; display: flex; flex-direction: column; gap: 16px; padding: 56px 24px 12px">
+    <div style="display: flex; align-items: center; gap: 12px">
+      <a href="Main.dc.html" aria-label="Back to home" style="width: 44px; height: 44px; border-radius: 8px; border: 1px solid var(--border-on-dark); background: rgba(255,255,255,.04); color: var(--text-on-dark); display: grid; place-items: center">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg>
+      </a>
+      <h1 style="flex: 1; margin: 0; font-family: var(--font-display); font-size: 21px; font-weight: 700; letter-spacing: -0.01em; color: var(--text-on-dark)">Activity</h1>
+      <button aria-label="Download statement" style="width: 44px; height: 44px; border-radius: 8px; border: 1px solid var(--border-on-dark); background: rgba(255,255,255,.04); color: var(--text-on-dark); display: grid; place-items: center; cursor: pointer">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15V3"></path><path d="m7 10 5 5 5-5"></path><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path></svg>
+      </button>
+    </div>
+    <div style="display: flex; gap: 8px; flex-wrap: wrap">
+      <sc-for list="{{filters}}" as="f" hint-placeholder-count="5">
+        <x-import component-from-global-scope="ETHIXDesignSystem_3fcc11.Tag" selected="{{f.selected}}" on-click="{{f.pick}}">{{f.label}}</x-import>
+      </sc-for>
+    </div>
+  </header>
+
+  <main style="flex: 1 1 auto; overflow: auto; padding: 8px 24px 24px; display: flex; flex-direction: column; gap: 8px">
+    <sc-for list="{{rows}}" as="r" hint-placeholder-count="8">
+      <sc-if value="{{r.isHeader}}" hint-placeholder-val="{{ false }}">
+        <h2 style="margin: 16px 0 4px; font-family: var(--font-text); font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-on-dark-muted)">{{r.label}}</h2>
+      </sc-if>
+      <sc-if value="{{r.isItem}}" hint-placeholder-val="{{ true }}">
+        <div style="display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-radius: 14px; background: var(--surface-inverse-raised); border: 1px solid var(--border-on-dark)">
+          <x-import component-from-global-scope="ETHIXDesignSystem_3fcc11.Icon" name="{{r.icon}}" size="{{iconSize}}" base="{{iconBase}}"></x-import>
+          <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px">
+            <span style="font-size: 14px; font-weight: 500; color: var(--text-on-dark); white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{r.title}}</span>
+            <span style="font-size: 12px; color: var(--text-on-dark-muted)">{{r.sub}}</span>
+          </div>
+          <span style="font-family: var(--font-mono); font-size: 13px; color: {{r.color}}">{{r.amount}}</span>
+        </div>
+      </sc-if>
+    </sc-for>
+    <p style="margin: 16px 0 0; font-size: 12px; line-height: 1.5; color: var(--text-on-dark-muted); text-align: center">Showing the last 30 days. Download a statement for earlier activity.</p>
+  </main>
+
+  <nav aria-label="Main" style="flex: 0 0 auto; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--border-on-dark); background: rgba(10,10,10,.92); padding: 8px 8px 28px">
+    <a href="Main.dc.html" aria-current="page" style="min-height: 52px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 11px; font-weight: 600; color: var(--g-400)">
+      <x-import component-from-global-scope="ETHIXDesignSystem_3fcc11.Icon" name="save" size="{{tabIcon}}" base="{{iconBase}}"></x-import>Home
+    </a>
+    <a href="Invest.dc.html" style="min-height: 52px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 11px; color: var(--text-on-dark-muted)">
+      <x-import component-from-global-scope="ETHIXDesignSystem_3fcc11.Icon" name="invest" size="{{tabIcon}}" base="{{iconBase}}" tone="light" style="{{dim}}"></x-import>Invest
+    </a>
+    <a href="Portfolio.dc.html" style="min-height: 52px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 11px; color: var(--text-on-dark-muted)">
+      <x-import component-from-global-scope="ETHIXDesignSystem_3fcc11.Icon" name="analyze" size="{{tabIcon}}" base="{{iconBase}}" tone="light" style="{{dim}}"></x-import>Portfolio
+    </a>
+    <a href="Settings.dc.html" style="min-height: 52px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 11px; color: var(--text-on-dark-muted)">
+      <x-import component-from-global-scope="ETHIXDesignSystem_3fcc11.Icon" name="protect" size="{{tabIcon}}" base="{{iconBase}}" tone="light" style="{{dim}}"></x-import>Settings
+    </a>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { filter: 'All' };
+  }
+  renderVals() {
+    const f = this.state.filter;
+    const pos = 'var(--g-400)';
+    const neu = 'var(--text-on-dark)';
+    const items = [
+      { day: 'Today', kind: 'Invest', icon: 'invest', title: 'Ethical Growth ISA', sub: 'Deposit · 09:14', amount: '+£250.00', color: pos },
+      { day: 'Today', kind: 'Spend', icon: 'transfer', title: 'Sara Haddad', sub: 'Transfer · Rent share', amount: '−£250.00', color: neu },
+      { day: '8 Oct', kind: 'Invest', icon: 'grow', title: 'Riverside Housing Bond', sub: 'Coupon paid', amount: '+£14.20', color: pos },
+      { day: '8 Oct', kind: 'Give', icon: 'grow', title: 'Climate and nature', sub: 'Monthly gift · Gift Aid +£6.25', amount: '−£25.00', color: neu },
+      { day: '7 Oct', kind: 'Spend', icon: 'transfer', title: 'Grocery co-op', sub: 'Everyday card', amount: '−£38.65', color: neu },
+      { day: '7 Oct', kind: 'Save', icon: 'save', title: 'ETHIX Home', sub: 'Monthly contribution', amount: '−£750.00', color: neu },
+      { day: '1 Oct', kind: 'Spend', icon: 'transfer', title: 'Greenway Energy Co-op', sub: 'Direct debit', amount: '−£64.00', color: neu },
+      { day: '1 Oct', kind: 'Save', icon: 'save', title: 'Round-ups', sub: 'Invested weekly', amount: '−£7.42', color: neu }
+    ].filter((i) => f === 'All' || i.kind === f);
+    const rows = [];
+    let last = '';
+    items.forEach((i) => {
+      if (i.day !== last) { rows.push({ isHeader: true, isItem: false, label: i.day }); last = i.day; }
+      rows.push(Object.assign({ isHeader: false, isItem: true }, i));
+    });
+    return {
+      iconSize: 24,
+      tabIcon: 22,
+      iconBase: 'ds/ethixdesignsystem_3fcc11/assets/icons',
+      dim: { opacity: 0.55 },
+      filters: ['All', 'Spend', 'Invest', 'Save', 'Give'].map((l) => ({ label: l, selected: l === f, pick: () => this.setState({ filter: l }) })),
+      rows: rows
+    };
+  }
+}
+</script>
+</body>
+</html>

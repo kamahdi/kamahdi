@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>ETHIX · Portfolio</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ds/ethixdesignsystem_3fcc11/styles.css">
+<script src="ds/ethixdesignsystem_3fcc11/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+<style>
+body{margin:0;background:#0A0A0A}
+a{color:#22A075;text-decoration:none}a:hover{color:#5FBB99}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; display: flex; flex-direction: column; background: var(--surface-inverse); color: var(--text-on-dark); font-family: var(--font-text); overflow: hidden">
+
+  <header style="flex: 0 0 auto; display: flex; flex-direction: column; gap: 12px; padding: 56px 24px 0">
+    <h1 style="margin: 0; font-family: var(--font-display); font-size: 26px; font-weight: 700; letter-spacing: -0.02em; color: var(--text-on-dark)">Portfolio</h1>
+    <x-import component-from-global-scope="ETHIXDesignSystem_3fcc11.Tabs" tone="dark" items="{{tabs}}" value="{{tab}}" on-change="{{setTab}}"></x-import>
+  </header>
+
+  <main style="flex: 1 1 auto; overflow: auto; padding: 20px 24px 24px; display: flex; flex-direction: column; gap: 16px">
+
+    <sc-if value="{{isOverview}}" hint-placeholder-val="{{ true }}">
+      <section aria-label="Value" style="border-radius: 20px; background: var(--surface-inverse-raised); border: 1px solid var(--border-on-dark); padding: 20px; display: flex; flex-direction: column; gap: 4px">
+        <div style="font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-on-dark-muted)">Value</div>
+        <div style="font-family: var(--font-display); font-size: 36px; font-weight: 700; letter-spacing: -0.02em; color: var(--text-on-dark)">£24,180.55</div>
+        <div style="font-size: 13px; font-weight: 500; color: var(--g-400)">+£412.90 · +1.7% this month</div>
+        <svg viewBox="0 0 300 110" preserveAspectRatio="none" role="img" aria-label="Portfolio value rising over the past month" style="width: 100%; height: 120px; margin-top: 12px; display: block">
+          <defs><linearGradient id="fill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#22A075" stop-opacity="0.45"></stop><stop offset="1" stop-color="#006B44" stop-opacity="0"></stop></linearGradient></defs>
+          <path d="M0,92 C30,90 50,78 80,80 C110,82 130,60 160,58 C190,56 210,40 240,34 C265,29 285,18 300,14 L300,110 L0,110 Z" fill="url(#fill)"></path>
+          <path d="M0,92 C30,90 50,78 80,80 C110,82 130,60 160,58 C190,56 210,40 240,34 C265,29 285,18 300,14" fill="none" stroke="#22A075" stroke-width="2"></path>
+        </svg>
+        <div style="display: flex; justify-content: space-between; font-size: 12px; color: var(--text-on-dark-muted)"><span>19 Sep</span><span>19 Oct</span></div>
+      </section>
+      <div style="display: flex; gap: 8px; flex-wrap: wrap">
+        <sc-for list="{{ranges}}" as="r" hint-placeholder-count="4">
+          <x-import component-from-global-scope="ETHIXDesignSystem_3fcc11.Tag" selected="{{r.selected}}" on-click="{{r.pick}}">{{r.label}}</x-import>
+        </sc-for>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
+        <div style="border-top: 2px solid var(--ethix-emerald); padding-top: 12px; display: flex; flex-direction: column; gap: 4px">
+          <span style="font-family: var(--font-display); font-size: 22px; font-weight: 700; color: var(--text-on-dark)">3</span>
+          <span style="font-size: 12px; color: var(--text-on-dark-muted)">Screened holdings</span>
+        </div>
+        <div style="border-top: 2px solid var(--ethix-emerald); padding-top: 12px; display: flex; flex-direction: column; gap: 4px">
+          <span style="font-family: var(--font-display); font-size: 22px; font-weight: 700; color: var(--text-on-dark)">14 Nov</span>
+          <span style="font-size: 12px; color: var(--text-on-dark-muted)">Next rebalance</span>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{isHoldings}}" hint-placeholder-val="{{ false }}">
+      <sc-for list="{{holdings}}" as="h" hint-placeholder-count="3">
+        <div style="display: flex; align-items: center; gap: 12px; padding: 16px; border-radius: 14px; background: var(--surface-inverse-raised); border: 1px solid var(--border-on-dark)">
+          <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 8px; align-items: flex-start">
+            <span style="font-size: 14px; font-weight: 500; color: var(--text-on-dark)">{{h.name}}</span>
+            <x-import component-from-global-scope="ETHIXDesignSystem_3fcc11.Badge" tone="positive" size="sm" dot="{{yes}}">Screened</x-import>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 4px; align-items: flex-end">
+            <span style="font-family: var(--font-mono); font-size: 14px; color: var(--text-on-dark)">{{h.value}}</span>
+            <span style="font-size: 12px; font-weight: 500; color: {{h.color}}">{{h.delta}}</span>
+          </div>
+        </div>
+      </sc-for>
+    </sc-if>
+
+    <sc-if value="{{isImpact}}" hint-placeholder-val="{{ false }}">
+      <sc-for list="{{impact}}" as="i" hint-placeholder-count="3">
+        <div style="display: flex; align-items: center; gap: 14px; padding: 16px; border-radius: 14px; background: var(--surface-inverse-raised); border: 1px solid var(--border-on-dark)">
+          <x-import component-from-global-scope="ETHIXDesignSystem_3fcc11.Icon" name="{{i.icon}}" size="{{bigIcon}}" base="{{iconBase}}"></x-import>
+          <div style="display: flex; flex-direction: column; gap: 2px">
+            <span style="font-family: var(--font-display); font-size: 19px; font-weight: 700; color: var(--text-on-dark)">{{i.big}}</span>
+            <span style="font-size: 13px; color: var(--text-on-dark-muted)">{{i.label}}</span>
+          </div>
+        </div>
+      </sc-for>
+      <p style="margin: 0; font-size: 13px; line-height: 1.55; color: var(--text-on-dark-muted)">Verified quarterly by our independent ethics committee. Version 4.2, published 12 August.</p>
+    </sc-if>
+  </main>
+
+  <nav aria-label="Main" style="flex: 0 0 auto; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--border-on-dark); background: rgba(10,10,10,.92); padding: 8px 8px 28px">
+    <a href="Main.dc.html" style="min-height: 52px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 11px; color: var(--text-on-dark-muted)">
+      <x-import component-from-global-scope="ETHIXDesignSystem_3fcc11.Icon" name="save" size="{{tabIcon}}" base="{{iconBase}}" tone="light" style="{{dim}}"></x-import>Home
+    </a>
+    <a href="Invest.dc.html" style="min-height: 52px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 11px; color: var(--text-on-dark-muted)">
+      <x-import component-from-global-scope="ETHIXDesignSystem_3fcc11.Icon" name="invest" size="{{tabIcon}}" base="{{iconBase}}" tone="light" style="{{dim}}"></x-import>Invest
+    </a>
+    <a href="Portfolio.dc.html" aria-current="page" style="min-height: 52px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 11px; font-weight: 600; color: var(--g-400)">
+      <x-import component-from-global-scope="ETHIXDesignSystem_3fcc11.Icon" name="analyze" size="{{tabIcon}}" base="{{iconBase}}"></x-import>Portfolio
+    </a>
+    <a href="Settings.dc.html" style="min-height: 52px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 11px; color: var(--text-on-dark-muted)">
+      <x-import component-from-global-scope="ETHIXDesignSystem_3fcc11.Icon" name="protect" size="{{tabIcon}}" base="{{iconBase}}" tone="light" style="{{dim}}"></x-import>Settings
+    </a>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { tab: 'Overview', range: '1M' };
+  }
+  renderVals() {
+    const tab = this.state.tab;
+    const range = this.state.range;
+    return {
+      yes: true,
+      tabIcon: 22,
+      bigIcon: 30,
+      iconBase: 'ds/ethixdesignsystem_3fcc11/assets/icons',
+      dim: { opacity: 0.55 },
+      tabs: ['Overview', 'Holdings', 'Impact'],
+      tab: tab,
+      setTab: (v) => this.setState({ tab: v }),
+      isOverview: tab === 'Overview',
+      isHoldings: tab === 'Holdings',
+      isImpact: tab === 'Impact',
+      ranges: ['1M', '6M', '1Y', 'All'].map((r) => ({ label: r, selected: r === range, pick: () => this.setState({ range: r }) })),
+      holdings: [
+        { name: 'Renewables Fund', value: '£9,420.10', delta: '+2.4%', color: 'var(--g-400)' },
+        { name: 'Riverside Housing Bond', value: '£6,180.00', delta: '+1.1%', color: 'var(--g-400)' },
+        { name: 'Global Screened Equity', value: '£8,580.45', delta: '−0.3%', color: '#E07A6B' }
+      ],
+      impact: [
+        { icon: 'grow', big: '312 tonnes', label: 'CO₂e avoided' },
+        { icon: 'protect', big: '14 categories', label: 'Excluded from your money' },
+        { icon: 'analyze', big: 'Quarterly', label: 'Independent ethics review' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>
